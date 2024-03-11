@@ -37,8 +37,11 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/json/uplusRawData.json");
-        const rawData: string = await response.json();
+        // https://storage.googleapis.com/beagle-static-web/test3.txt 에서 데이터를 가져옵니다.
+        const response = await fetch(
+          "https://storage.googleapis.com/beagle-static-web/test3.txt"
+        );
+        const rawData: string = await response.text();
         const processedData = processRawData(rawData);
         const objToArr = Object.entries(processedData).map(([key, value]) => {
           return {
